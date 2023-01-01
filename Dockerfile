@@ -13,7 +13,7 @@ RUN apt-get -y install apt-transport-https lsb-release ca-certificates curl gnup
 RUN curl -sSLo /usr/share/keyrings/deb.sury.org-php.gpg https://packages.sury.org/php/apt.gpg && sh -c 'echo "deb [signed-by=/usr/share/keyrings/deb.sury.org-php.gpg] https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list' && apt-get update && apt-get dist-upgrade -y
 
 # Install PHP
-RUN apt-get install -y php$PHP_VERSION-fpm php$PHP_VERSION-pgsql php$PHP_VERSION-curl php$PHP_VERSION-zip php$PHP_VERSION-xml php$PHP_VERSION-mbstring php$PHP_VERSION-intl php$PHP_VERSION-gd php$PHP_VERSION-soap php$PHP_VERSION-apcu php$PHP_VERSION-redis
+RUN apt-get install -y php$PHP_VERSION-fpm php$PHP_VERSION-pgsql php$PHP_VERSION-curl php$PHP_VERSION-zip php$PHP_VERSION-xml php$PHP_VERSION-mbstring php$PHP_VERSION-intl php$PHP_VERSION-gd php$PHP_VERSION-soap php$PHP_VERSION-apcu php$PHP_VERSION-redis php$PHP_VERSION-ldap
 
 # Add nginx repo keys
 RUN curl https://nginx.org/keys/nginx_signing.key | gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
