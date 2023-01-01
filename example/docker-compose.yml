@@ -1,0 +1,36 @@
+version: "3"
+services:
+  moodle:
+    image: panmourovaty/dockered-moodle
+    ports:
+     - 80:80
+    volumes:
+      - ./data:/var/www/data
+      - ./config.php:/var/www/app/config.php
+      - redis:/var/run/redis
+      - postgres:/var/run/postgresql
+    restart: unless-stopped
+  moodle-redis:
+    image: clearlinux/redis
+    command: bash -c "chmod 0777 /var/run/redis && redis-server --appendonly yes --unixsocket /var/run/redis/redis.sock --unixsocketperm 777"
+    volumes:
+      - ./redis:/data
+      - redis:/var/run/redis
+    restart: unless-stopped  
+  moodle-postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: POSTGRESUSER
+      POSTGRES_PASSWORD: POSTGRESPASSWORD
+      POSTGRES_DB: DATABASENAME
+      LANG: cs_CZ.utf8
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - ./postgres:/var/lib/postgresql/data/
+      - postgres:/var/run/postgresql
+    restart: unless-stopped
+    
+volumes:
+  mariadb:
+  redis:
+  postgres:
