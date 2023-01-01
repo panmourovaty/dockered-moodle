@@ -51,6 +51,9 @@ RUN cd /var/www/app && git clone git://git.moodle.org/moodle.git && mv moodle/* 
 RUN chown -R nginx /var/www
 RUN chmod -R 550 /var/www/app
 
+# Add moodle cron job
+RUN echo '* * * * * su nginx -c "php  /var/www/app/admin/cli/cron.php >/dev/null"' > /etc/cron.d/moodlecronjob
+
 WORKDIR /var/www/app
 
 STOPSIGNAL SIGTERM
