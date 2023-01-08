@@ -52,7 +52,7 @@ RUN chown -R nginx /var/www
 RUN chmod -R 550 /var/www/app
 
 # Add moodle cron job
-RUN echo '* * * * * sudo -u nginx php /var/www/app/admin/cli/cron.php >/dev/null' > /etc/cron.d/moodlecronjob
+RUN echo '* * * * * nginx php /var/www/app/admin/cli/cron.php >/dev/null' > /etc/cron.d/moodlecronjob
 
 WORKDIR /var/www/app
 
