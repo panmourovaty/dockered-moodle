@@ -8,7 +8,7 @@ ENV MOODLE_PLUGIN_JITSI="https://moodle.org/plugins/download.php/28244/mod_jitsi
 RUN apt-get update && apt-get dist-upgrade -y
 
 # Install dependencies
-RUN apt-get -y install apt-transport-https lsb-release ca-certificates curl gnupg2 apt-utils git sudo ghostscript cron wget
+RUN apt-get -y install apt-transport-https lsb-release ca-certificates curl gnupg2 apt-utils git sudo ghostscript cron wget unzip
 
 # Add php repo keys
 RUN curl -sSLo /usr/share/keyrings/deb.sury.org-php.gpg https://packages.sury.org/php/apt.gpg && sh -c 'echo "deb [signed-by=/usr/share/keyrings/deb.sury.org-php.gpg] https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list' && apt-get update && apt-get dist-upgrade -y
