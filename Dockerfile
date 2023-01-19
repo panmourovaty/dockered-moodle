@@ -2,6 +2,7 @@ FROM debian:bullseye-slim AS builder
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PHP_VERSION=8.0
 ENV MOODLE_VERSION="MOODLE_401_STABLE"
+ENV MOODLE_PLUGIN_JITSI="https://moodle.org/plugins/download.php/28244/mod_jitsi_moodle41_2022122300.zip"
 
 # Update OS
 RUN apt-get update && apt-get dist-upgrade -y
@@ -48,6 +49,11 @@ post_max_size = 0'>> /etc/php/$PHP_VERSION/cli/php.ini
 
 # Download moodle
 RUN cd /var/www/app && git clone git://git.moodle.org/moodle.git && mv moodle/* ./ && mv moodle/.git ./.git && rm -rf moodle && git branch -a && git branch --track $MOODLE_VERSION origin/$MOODLE_VERSION && git checkout $MOODLE_VERSION
+
+#Download plugins
+RUN cd /var/www/app/mod && wget -O moodlejitsi.zip "$MOODLE_PLUGIN_JITSI" && unzip moodlejitsi.zip && rm -f moodlejitsi.zip
+
+# Ensure permissions
 RUN chown -R nginx /var/www
 RUN chmod -R 550 /var/www/app
 
