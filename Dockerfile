@@ -53,7 +53,7 @@ RUN cd /var/www/app && git clone git://git.moodle.org/moodle.git && mv moodle/* 
 
 #Download plugins
 RUN cd /var/www/app/mod && wget -O moodlejitsi.zip "$MOODLE_PLUGIN_JITSI" && unzip moodlejitsi.zip && rm -f moodlejitsi.zip
-RUN cd /var/www/app/mod && wget -O moodlecustomcerts.zip "$MOODLE_PLUGIN_CUSTOMCERTS" && unzip moodlejitsi.zip && rm -f moodlecustomcerts.zip
+RUN cd /var/www/app/mod && wget -O moodlecustomcerts.zip "$MOODLE_PLUGIN_CUSTOMCERTS" && unzip moodlecustomcerts.zip && rm -f moodlecustomcerts.zip
 
 # Ensure permissions
 RUN chown -R nginx /var/www
