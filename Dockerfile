@@ -3,6 +3,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV PHP_VERSION=8.0
 ENV MOODLE_VERSION="MOODLE_401_STABLE"
 ENV MOODLE_PLUGIN_JITSI="https://moodle.org/plugins/download.php/28244/mod_jitsi_moodle41_2022122300.zip"
+ENV MOODLE_PLUGIN_CUSTOMCERTS="https://moodle.org/plugins/download.php/27862/mod_customcert_moodle41_2022041901.zip"
 
 # Update OS
 RUN apt-get update && apt-get dist-upgrade -y
@@ -52,6 +53,7 @@ RUN cd /var/www/app && git clone git://git.moodle.org/moodle.git && mv moodle/* 
 
 #Download plugins
 RUN cd /var/www/app/mod && wget -O moodlejitsi.zip "$MOODLE_PLUGIN_JITSI" && unzip moodlejitsi.zip && rm -f moodlejitsi.zip
+RUN cd /var/www/app/mod && wget -O moodlecustomcerts.zip "$MOODLE_PLUGIN_CUSTOMCERTS" && unzip moodlejitsi.zip && rm -f moodlecustomcerts.zip
 
 # Ensure permissions
 RUN chown -R nginx /var/www
