@@ -1,9 +1,9 @@
-FROM debian:bullseye-slim AS builder
+FROM debian:bookworm-slim AS builder
 ENV DEBIAN_FRONTEND=noninteractive
-ENV PHP_VERSION=8.0
-ENV MOODLE_VERSION="MOODLE_401_STABLE"
-ENV MOODLE_PLUGIN_JITSI="https://moodle.org/plugins/download.php/28244/mod_jitsi_moodle41_2022122300.zip"
-ENV MOODLE_PLUGIN_CUSTOMCERTS="https://moodle.org/plugins/download.php/27862/mod_customcert_moodle41_2022041901.zip"
+ENV PHP_VERSION=8.2
+ENV MOODLE_VERSION="MOODLE_402_STABLE"
+ENV MOODLE_PLUGIN_JITSI="https://moodle.org/plugins/download.php/29604/mod_jitsi_moodle42_2023070300.zip"
+ENV MOODLE_PLUGIN_CUSTOMCERTS="https://moodle.org/plugins/download.php/29392/mod_customcert_moodle42_2023042402.zip"
 
 # Update OS
 RUN apt-get update && apt-get dist-upgrade -y
