@@ -48,7 +48,7 @@ upload_max_filesize = 0 \n\
 post_max_size = 0'>> /etc/php/$PHP_VERSION/cli/php.ini
 
 # Download moodle
-RUN cd /var/www/app && git clone git://git.moodle.org/moodle.git && mv moodle/* ./ && mv moodle/.git ./.git && rm -rf moodle && git branch -a && git branch --track $MOODLE_VERSION origin/$MOODLE_VERSION && git checkout $MOODLE_VERSION
+RUN cd /var/www/app && git clone git://git.moodle.org/moodle.git && mv moodle/* ./ && mv moodle/.git ./.git && rm -rf moodle && git branch -a && git branch --track $MOODLE_VERSION origin/$MOODLE_VERSION && git checkout $MOODLE_VERSION && rm -rf .git
 
 #Download plugins
 RUN cd /var/www/app/mod && wget -O moodlejitsi.zip "$MOODLE_PLUGIN_JITSI" && unzip moodlejitsi.zip && rm -f moodlejitsi.zip
