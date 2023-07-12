@@ -33,7 +33,6 @@ ADD ./app-php.conf /etc/php/$PHP_VERSION/fpm/pool.d/app-php.conf
 ADD ./run.sh /opt/run.sh
 RUN rm -f /etc/nginx/conf.d/default.conf
 RUN rm -f /etc/php/$PHP_VERSION/fpm/pool.d/www.conf
-RUN mkdir /run/php
 RUN mkdir -p /var/www/app
 RUN echo 'opcache.enable=1 \n\
 opcache.enable_cli=1 \n\
