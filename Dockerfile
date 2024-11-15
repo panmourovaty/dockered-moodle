@@ -2,8 +2,6 @@ FROM debian:bookworm-slim AS builder
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PHP_VERSION=8.3
 ENV MOODLE_VERSION="MOODLE_405_STABLE"
-ENV MOODLE_PLUGIN_JITSI="https://moodle.org/plugins/download.php/32820/mod_jitsi_moodle44_2024081300.zip"
-ENV MOODLE_PLUGIN_CUSTOMCERTS="https://moodle.org/plugins/download.php/33445/mod_customcert_moodle45_2024042207.zip"
 
 # Update OS
 RUN apt-get update && apt-get dist-upgrade -y
@@ -49,10 +47,6 @@ post_max_size = 0'>> /etc/php/$PHP_VERSION/cli/php.ini
 
 # Download moodle
 RUN cd /var/www/app && git clone git://git.moodle.org/moodle.git && mv moodle/* ./ && mv moodle/.git ./.git && rm -rf moodle && git branch -a && git branch --track $MOODLE_VERSION origin/$MOODLE_VERSION && git checkout $MOODLE_VERSION && rm -rf .git
-
-#Download plugins
-RUN cd /var/www/app/mod && wget -O moodlejitsi.zip "$MOODLE_PLUGIN_JITSI" && unzip moodlejitsi.zip && rm -f moodlejitsi.zip
-RUN cd /var/www/app/mod && wget -O moodlecustomcerts.zip "$MOODLE_PLUGIN_CUSTOMCERTS" && unzip moodlecustomcerts.zip && rm -f moodlecustomcerts.zip
 
 # Ensure permissions
 RUN chown -R nginx /var/www
