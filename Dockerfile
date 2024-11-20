@@ -46,6 +46,8 @@ opcache.jit=1235 \n\
 max_input_vars = 6000 \n\
 upload_max_filesize = 0 \n\
 post_max_size = 0'>> /etc/php/$PHP_VERSION/cli/php.ini
+RUN echo 'zend_extension=opcache.so \n\
+opcache.jit=1235'> /etc/php/$PHP_VERSION/mods-available/opcache.ini
 
 # Download moodle
 RUN cd /var/www/app && git clone git://git.moodle.org/moodle.git && mv moodle/* ./ && mv moodle/.git ./.git && rm -rf moodle && git branch -a && git branch --track $MOODLE_VERSION origin/$MOODLE_VERSION && git checkout $MOODLE_VERSION && rm -rf .git
