@@ -35,12 +35,14 @@ RUN mkdir -p /var/www/app
 RUN echo 'opcache.enable=1 \n\
 opcache.enable_cli=1 \n\
 opcache.jit_buffer_size=512M \n\
+opcache.jit=1235 \n\
 max_input_vars = 6000 \n\
 upload_max_filesize = 0 \n\
 post_max_size = 0'>> /etc/php/$PHP_VERSION/fpm/php.ini
 RUN echo 'opcache.enable=1 \n\
 opcache.enable_cli=1 \n\
 opcache.jit_buffer_size=512M \n\
+opcache.jit=1235 \n\
 max_input_vars = 6000 \n\
 upload_max_filesize = 0 \n\
 post_max_size = 0'>> /etc/php/$PHP_VERSION/cli/php.ini
