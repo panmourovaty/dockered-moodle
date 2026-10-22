@@ -50,7 +50,7 @@ RUN echo 'zend_extension=opcache.so \n\
 opcache.jit=1235'> /etc/php/$PHP_VERSION/mods-available/opcache.ini
 
 # Download moodle
-RUN cd /var/www/app && git clone git://git.moodle.org/moodle.git && mv moodle/* ./ && mv moodle/.git ./.git && rm -rf moodle && git branch -a && git branch --track $MOODLE_VERSION origin/$MOODLE_VERSION && git checkout $MOODLE_VERSION && rm -rf .git
+RUN cd /var/www/app && git clone https://github.com/moodle/moodle.git && mv moodle/* ./ && mv moodle/.git ./.git && rm -rf moodle && git branch -a && git branch --track $MOODLE_VERSION origin/$MOODLE_VERSION && git checkout $MOODLE_VERSION && rm -rf .git
 
 # Ensure permissions
 RUN chown -R nginx /var/www
